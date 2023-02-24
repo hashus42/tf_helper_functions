@@ -82,7 +82,7 @@ def pred_and_plot(model, filename, class_names):
     plt.axis(False)
 
 
-def crate_tensorboard_callback(dir_name, experiment_name):
+def create_tensorboard_callback(dir_name, experiment_name):
     log_dir = dir_name + "/" + experiment_name + "/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 
     tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir)
