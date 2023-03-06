@@ -22,56 +22,8 @@ def load_and_prep_image(filename, img_shape=224, normalize=True):
         return img / 255.
     else:
         return img
-
-
-def make_confusion_matrix(y_true, y_pred, classes=None, figsize=(10, 10), text_size=18, norm=True, savefig=False):
-    """Makes a labelled confusion matrix comparing predictions and ground truth labels.
-    If classes is passed, confusion matrix will be labelled, if not, integer class values
-    will be used.
-
-    Please make these run before using this function.
-    !pip install mlxtend==0.16.0
-    from mlxtend.plotting import plot_confusion_matrix
-
-    Args:
-      y_true: Array of truth labels (must be same shape as y_pred).
-      y_pred: Array of predicted labels (must be same shape as y_true).
-      classes: Array of class labels (e.g. string form). If `None`, integer labels are used.
-      figsize: Size of output figure (default=(10, 10)).
-      text_size: Size of output figure text (default=15).
-      norm: normalize values or not (default=True).
-      savefig: save confusion matrix to file (default=False).
-
-    Returns:
-      A labelled confusion matrix plot comparing y_true and y_pred.
-    Example usage:
-      make_confusion_matrix(y_true=test_labels, # ground truth test labels
-                            y_pred=y_preds, # predicted labels
-                            classes=class_names, # array of class label names
-                            figsize=(15, 15),
-                            text_size=10)
-    """
-
-    cm = confusion_matrix(y_true, y_pred)
-    cm_norm = cm.astype("float") / cm.sum(axis=1)[:, np.newaxis]
-
-    fig, ax = plot_confusion_matrix(figsize=figsize,
-                                    conf_mat=cm,
-                                    show_absolute=True,
-                                    show_normed=norm,
-                                    colorbar=True,
-                                    class_names=classes)
-
-    plt.xlabel("Predictions", fontsize=text_size)
-    plt.ylabel("Actuals", fontsize=text_size)
-    plt.title("Confusion Matrix", fontsize=text_size)
-    plt.show()
-
-    if savefig:
-        fig.savefig("confusion_matrix.png")
-
-
-def make_confusion_matrix_manual(y_true, y_pred, classes=None, figsize=(10, 10), text_size=15, norm=False, savefig=False):
+    
+def make_confusion_matrix(y_true, y_pred, classes=None, figsize=(10, 10), text_size=15, norm=False, savefig=False):
     """Makes a labelled confusion matrix comparing predictions and ground truth labels.
     If classes is passed, confusion matrix will be labelled, if not, integer class values
     will be used.
