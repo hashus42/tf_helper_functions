@@ -65,6 +65,8 @@ def make_confusion_matrix(y_true, y_pred, classes=None, figsize=(10, 10), text_s
     plt.xlabel("Predictions", fontsize=text_size)
     plt.ylabel("Actuals", fontsize=text_size)
     plt.title("Confusion Matrix", fontsize=text_size)
+    plt.xticks(rotation=70, fontsize=text_size)
+    plt.yticks(fontsize=text_size)
     plt.show()
 
     if savefig:
@@ -121,6 +123,10 @@ def make_confusion_matrix_manual(y_true, y_pred, classes=None, figsize=(10, 10),
     # Make x-axis labels appear on bottom
     ax.xaxis.set_label_position("bottom")
     ax.xaxis.tick_bottom()
+
+    # Rotate for visibility
+    plt.xticks(rotation=70, fontsize=text_size)
+    plt.yticks(fontsize=text_size)
 
     # Set the threshold for different colors
     threshold = (cm.max() + cm.min()) / 2.
