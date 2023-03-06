@@ -27,6 +27,11 @@ def make_confusion_matrix(y_true, y_pred, classes=None, figsize=(10, 10), text_s
     """Makes a labelled confusion matrix comparing predictions and ground truth labels.
     If classes is passed, confusion matrix will be labelled, if not, integer class values
     will be used.
+
+    Please make these run before using this function.
+    !pip install mlxtend==0.16.0
+    from mlxtend.plotting import plot_confusion_matrix
+
     Args:
       y_true: Array of truth labels (must be same shape as y_pred).
       y_pred: Array of predicted labels (must be same shape as y_true).
