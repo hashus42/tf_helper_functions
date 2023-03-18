@@ -95,7 +95,7 @@ def make_confusion_matrix_manual(y_true, y_pred, classes=None, figsize=(10, 10),
                             figsize=(15, 15),
                             text_size=10)
     """
-    # Create the confustion matrix
+    # Create the confusion matrix
     cm = confusion_matrix(y_true, y_pred)
     cm_norm = cm.astype("float") / cm.sum(axis=1)[:, np.newaxis]  # normalize it
     n_classes = cm.shape[0]  # find the number of classes we're dealing with
@@ -147,6 +147,8 @@ def make_confusion_matrix_manual(y_true, y_pred, classes=None, figsize=(10, 10),
     # Save the figure to the current working directory
     if savefig:
         fig.savefig("confusion_matrix.png")
+
+
 def pred_and_plot(model, filename, class_names):
     img = load_and_prep_image(filename)
 
