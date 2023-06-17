@@ -149,6 +149,26 @@ def make_confusion_matrix_manual(y_true, y_pred, classes=None, figsize=(10, 10),
         fig.savefig("confusion_matrix.png")
 
 
+def evaluate_metrics(y_trues, y_preds, class_names):
+
+  """
+  class_names => string array.
+
+  """
+
+  import matplotlib.pyplot as plt
+  import numpy as np
+  from sklearn import metrics
+
+  confusion_matrix = metrics.confusion_matrix(y_trues, y_preds)
+
+  cm_display = metrics.ConfusionMatrixDisplay(confusion_matrix, display_labels=class_names)
+
+  cm_display.plot()
+  plt.title(f"Accuracy: {metrics.accuracy_score(y_trues, y_preds):.2f} | Precision: {metrics.precision_score(y_trues, y_preds):.2f} |\
+  Recall: {metrics.recall_score(y_trues, y_preds):.2f} | F1-score: {metrics.f1_score(y_trues, y_preds):.2f}")
+
+
 def pred_and_plot(model, filename, class_names):
     img = load_and_prep_image(filename)
 
