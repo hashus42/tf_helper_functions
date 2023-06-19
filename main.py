@@ -9,6 +9,7 @@ import zipfile
 import os
 from sklearn.metrics import accuracy_score, precision_recall_fscore_support
 import itertools
+from sklearn import metrics
 
 
 def load_and_prep_image(filename, img_shape=224, normalize=True):
@@ -149,7 +150,7 @@ def make_confusion_matrix_manual(y_true, y_pred, classes=None, figsize=(10, 10),
         fig.savefig("confusion_matrix.png")
 
 
-def evaluate_metrics(y_trues, y_preds, class_names):
+def evaluation_metrics(y_trues, y_preds, class_names):
 
   """
   class_names => string array.
@@ -167,6 +168,19 @@ def evaluate_metrics(y_trues, y_preds, class_names):
   cm_display.plot()
   plt.title(f"Accuracy: {metrics.accuracy_score(y_trues, y_preds):.2f} | Precision: {metrics.precision_score(y_trues, y_preds):.2f} |\
   Recall: {metrics.recall_score(y_trues, y_preds):.2f} | F1-score: {metrics.f1_score(y_trues, y_preds):.2f}")
+
+
+def calculate_metrics(y_true, y_preds):
+  dict = {}
+  acc_score = metrics.accuracy_score(y_true, y_preds)
+  dict["accuracy"] = acc_score
+  precision = metrics.precision_score(y_true, y_preds)
+  dict["precision"] = precision
+  recall = metrics.recall_score(y_true, y_preds)
+  dict["recall"] = recall
+  f1_score = metrics.f1_score(y_true, y_preds)
+  dict["f1_score"] = f1_score
+  return dict
 
 
 def pred_and_plot(model, filename, class_names):
